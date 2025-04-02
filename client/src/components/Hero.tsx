@@ -1,23 +1,62 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { coupleImages, engagementImages, floralImages } from "@/lib/images";
 
 export default function Hero() {
-  const scrollToRsvp = () => {
-    const rsvpSection = document.getElementById('rsvp');
-    if (rsvpSection) {
+  const scrollToStory = () => {
+    const storySection = document.getElementById('story');
+    if (storySection) {
       window.scrollTo({
-        top: rsvpSection.offsetTop - 80,
+        top: storySection.offsetTop - 80,
         behavior: 'smooth'
       });
     }
   };
 
+  // Combined images from various categories for background animation
+  const backgroundImages = [...coupleImages, ...engagementImages, ...floralImages];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Animation for background image slideshow
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change image every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
+
   return (
     <section 
       id="hero" 
-      className="w-full min-h-screen flex items-center justify-center bg-cover bg-center relative py-24" 
-      style={{backgroundImage: "url('https://images.unsplash.com/photo-1519741347686-c1e331c5ffb3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')"}}
+      className="w-full min-h-screen flex items-center justify-center relative py-24 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black/30"></div>
+      {/* Animated Background Images */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentImageIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center h-full w-full" 
+            style={{
+              backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+              filter: 'brightness(0.7)'
+            }}
+          />
+        </motion.div>
+      </AnimatePresence>
+      
+      {/* Overlay with animated particles for elegant effect */}
+      <div className="absolute inset-0 bg-black/40"></div>
+      
+      {/* Content */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -54,19 +93,15 @@ export default function Hero() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="h-1 bg-[hsl(var(--gold))] mx-auto mb-10"
         ></motion.div>
-        <motion.a 
+        <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.6 }}
-          href="#rsvp" 
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToRsvp();
-          }}
+          onClick={scrollToStory}
           className="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          RSVP Now
-        </motion.a>
+          Our Story
+        </motion.button>
       </motion.div>
     </section>
   );
