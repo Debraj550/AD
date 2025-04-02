@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { debrajAnkitaPhotos } from "@/lib/images";
 
 export default function Story() {
   return (
@@ -24,8 +25,8 @@ export default function Story() {
             className="md:w-1/2"
           >
             <img 
-              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-              alt="Couple celebrating" 
+              src={debrajAnkitaPhotos[0].src} 
+              alt={debrajAnkitaPhotos[0].alt} 
               className="rounded-lg shadow-lg w-full h-[400px] object-cover"
             />
           </motion.div>

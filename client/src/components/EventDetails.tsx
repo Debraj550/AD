@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Calendar } from "lucide-react";
 import { TimelineItem } from "@/types";
+import { debrajAnkitaPhotos } from "@/lib/images";
 
 export default function EventDetails() {
   const timeline: TimelineItem[] = [
@@ -63,7 +64,7 @@ export default function EventDetails() {
             </div>
           </motion.div>
           
-          {/* Map Card */}
+          {/* Event Location Card with Photo */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,19 +74,23 @@ export default function EventDetails() {
           >
             <div className="p-6 text-center">
               <MapPin className="w-10 h-10 text-primary mx-auto mb-4" />
-              <h3 className="font-cormorant text-2xl text-dark mb-4">Location</h3>
+              <h3 className="font-cormorant text-2xl text-dark mb-4">At Our Favorite Place</h3>
             </div>
-            <div className="flex-1 relative min-h-[300px] bg-gray-200">
-              {/* Map placeholder - In real implementation, this would be replaced with a Leaflet Map */}
-              <div className="absolute inset-0 flex items-center justify-center bg-secondary/40">
+            <div className="flex-1 relative min-h-[300px]">
+              {/* Showcase the second photo instead of a map */}
+              <img 
+                src={debrajAnkitaPhotos[1].src} 
+                alt={debrajAnkitaPhotos[1].alt}
+                className="w-full h-full object-cover" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end justify-center">
                 <div className="text-center p-6">
-                  <MapPin className="w-12 h-12 text-primary/80 mx-auto mb-4" />
-                  <p className="font-medium">Garden Palace, Kalabagan Rd, Howrah</p>
+                  <p className="font-medium text-white mb-2">Garden Palace, Kalabagan Rd, Howrah</p>
                   <a 
                     href="https://maps.google.com/?q=Garden+Palace,+Kalabagan+Rd,+Howrah" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-block mt-4 bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-full text-sm transition-colors"
+                    className="inline-block mt-2 bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-full text-sm transition-colors"
                   >
                     Get Directions
                   </a>

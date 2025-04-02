@@ -1,6 +1,20 @@
 import { GalleryImage } from "@/types";
 
+// Real photos of Debraj and Ankita
+export const debrajAnkitaPhotos: GalleryImage[] = [
+  {
+    src: "/assets/debraj_ankita_beach.jpg",
+    alt: "Debraj and Ankita at the beach sunset"
+  },
+  {
+    src: "/assets/debraj_ankita_resort.jpg",
+    alt: "Debraj and Ankita at a beach resort"
+  }
+];
+
 export const galleryImages: GalleryImage[] = [
+  // Add the real photos at the beginning for prominence
+  ...debrajAnkitaPhotos,
   {
     src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     alt: "Engagement celebration"
@@ -8,10 +22,6 @@ export const galleryImages: GalleryImage[] = [
   {
     src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     alt: "Elegant wedding decor"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    alt: "Couple celebration"
   },
   {
     src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
@@ -32,15 +42,13 @@ export const galleryImages: GalleryImage[] = [
   {
     src: "https://images.unsplash.com/photo-1554147090-e1221a04a025?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     alt: "Floral arrangements"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    alt: "Engagement celebration"
   }
 ];
 
 // Engagement celebration images
 export const engagementImages = [
+  "/assets/debraj_ankita_beach.jpg",
+  "/assets/debraj_ankita_resort.jpg",
   "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1556035511-3168381ea4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
@@ -57,10 +65,11 @@ export const decorImages = [
 
 // Couple celebration images
 export const coupleImages = [
+  "/assets/debraj_ankita_beach.jpg",
+  "/assets/debraj_ankita_resort.jpg",
   "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-  "https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+  "https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
 ];
 
 // Floral arrangement images
