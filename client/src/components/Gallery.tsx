@@ -1,12 +1,45 @@
 import { motion } from "framer-motion";
-import { galleryImages } from "@/lib/images";
 import { GalleryImage } from "@/types";
+import beachPhoto from "@assets/20250207_181846.jpg";
+import resortPhoto from "@assets/20250208_145445.jpg";
 
 interface GalleryProps {
   onImageClick: (image: GalleryImage) => void;
 }
 
 export default function Gallery({ onImageClick }: GalleryProps) {
+  // Create gallery images array directly with imported assets
+  const galleryImages: GalleryImage[] = [
+    {
+      src: beachPhoto,
+      alt: "Debraj and Ankita at the beach sunset"
+    },
+    {
+      src: resortPhoto,
+      alt: "Debraj and Ankita at a beach resort"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      alt: "Engagement celebration"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      alt: "Elegant wedding decor"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      alt: "Floral arrangements"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1464998857633-50e59fbf2fe6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      alt: "Elegant wedding decor"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      alt: "Couple celebration"
+    }
+  ];
+
   return (
     <section id="gallery" className="py-20 bg-white">
       <div className="container mx-auto px-4">

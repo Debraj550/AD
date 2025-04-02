@@ -1,13 +1,15 @@
 import { GalleryImage } from "@/types";
+import beachPhoto from "@assets/20250207_181846.jpg";
+import resortPhoto from "@assets/20250208_145445.jpg";
 
 // Real photos of Debraj and Ankita
 export const debrajAnkitaPhotos: GalleryImage[] = [
   {
-    src: "/assets/debraj_ankita_beach.jpg",
+    src: beachPhoto,
     alt: "Debraj and Ankita at the beach sunset"
   },
   {
-    src: "/assets/debraj_ankita_resort.jpg",
+    src: resortPhoto,
     alt: "Debraj and Ankita at a beach resort"
   }
 ];
@@ -47,8 +49,8 @@ export const galleryImages: GalleryImage[] = [
 
 // Engagement celebration images
 export const engagementImages = [
-  "/assets/debraj_ankita_beach.jpg",
-  "/assets/debraj_ankita_resort.jpg",
+  beachPhoto,
+  resortPhoto,
   "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1556035511-3168381ea4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
@@ -65,8 +67,8 @@ export const decorImages = [
 
 // Couple celebration images
 export const coupleImages = [
-  "/assets/debraj_ankita_beach.jpg",
-  "/assets/debraj_ankita_resort.jpg",
+  beachPhoto,
+  resortPhoto,
   "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
   "https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"

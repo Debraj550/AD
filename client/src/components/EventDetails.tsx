@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Calendar } from "lucide-react";
 import { TimelineItem } from "@/types";
-import { debrajAnkitaPhotos } from "@/lib/images";
+import resortPhoto from "@assets/20250208_145445.jpg";
 
 export default function EventDetails() {
   const timeline: TimelineItem[] = [
@@ -79,8 +79,8 @@ export default function EventDetails() {
             <div className="flex-1 relative min-h-[300px]">
               {/* Showcase the second photo instead of a map */}
               <img 
-                src={debrajAnkitaPhotos[1].src} 
-                alt={debrajAnkitaPhotos[1].alt}
+                src={resortPhoto} 
+                alt="Debraj and Ankita at a beach resort"
                 className="w-full h-full object-cover" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end justify-center">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { coupleImages, engagementImages, floralImages } from "@/lib/images";
+import beachPhoto from "@assets/20250207_181846.jpg";
+import resortPhoto from "@assets/20250208_145445.jpg";
 
 export default function Hero() {
   const scrollToStory = () => {
@@ -13,8 +14,15 @@ export default function Hero() {
     }
   };
 
-  // Combined images from various categories for background animation
-  const backgroundImages = [...coupleImages, ...engagementImages, ...floralImages];
+  // Background images including our couple photos
+  const backgroundImages = [
+    beachPhoto,
+    resortPhoto,
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+  ];
+  
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Animation for background image slideshow
