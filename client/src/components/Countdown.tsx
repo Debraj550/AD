@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
+import beachPhoto from "@assets/20250207_181846.jpg";
+import resortPhoto from "@assets/20250208_145445.jpg";
+import selfiePhoto from "@assets/image_1743634855775.png";
+import beachCarryPhoto from "@assets/20250208_140307 (1).jpg";
+import riverPhoto from "@assets/20250207_144239.jpg";
+import groupPhoto from "@assets/20250206_133038.jpg";
+import homePhoto from "@assets/20241015_163356.jpg";
+import cafePhoto from "@assets/20241123_195845.jpg";
 
 type TimeLeft = {
   days: number;
@@ -59,10 +67,52 @@ export default function Countdown() {
     show: { y: 0, opacity: 1 }
   };
 
+  // CSS for photo collage
+  const photoCollageStyle = {
+    position: 'relative',
+    overflow: 'hidden',
+    padding: '80px 0'
+  };
+
+  // Create the collage grid with CSS
+  const collageGridStyle = `
+    .photo-collage-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 4px;
+      filter: brightness(0.6);
+    }
+    
+    .collage-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  `;
+
   return (
-    <section className="relative bg-center bg-cover bg-fixed py-20" 
-      style={{backgroundImage: "url('https://images.unsplash.com/photo-1509610973147-232dfea52a97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')"}}>
-      <div className="absolute inset-0 bg-black/40"></div>
+    <section className="relative py-20" style={photoCollageStyle}>
+      <style>{collageGridStyle}</style>
+      
+      {/* Photo Collage Grid */}
+      <div className="photo-collage-grid">
+        <img src={beachPhoto} alt="Beach" className="collage-img" />
+        <img src={riverPhoto} alt="River" className="collage-img" />
+        <img src={selfiePhoto} alt="Selfie" className="collage-img" />
+        <img src={groupPhoto} alt="Group" className="collage-img" />
+        <img src={homePhoto} alt="Home" className="collage-img" />
+        <img src={cafePhoto} alt="Cafe" className="collage-img" />
+        <img src={beachCarryPhoto} alt="Beach Carry" className="collage-img" />
+        <img src={resortPhoto} alt="Resort" className="collage-img" />
+      </div>
+      
+      <div className="absolute inset-0 bg-black/50"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center">
           <motion.h2 
