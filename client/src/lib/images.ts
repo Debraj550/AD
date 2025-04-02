@@ -1,6 +1,11 @@
 import { GalleryImage } from "@/types";
 import beachPhoto from "@assets/20250207_181846.jpg";
 import resortPhoto from "@assets/20250208_145445.jpg";
+import selfiePhoto from "@assets/image_1743634855775.png";
+import beachCarryPhoto from "@assets/20250208_140307 (1).jpg";
+import riverPhoto from "@assets/20250207_144239.jpg";
+import groupPhoto from "@assets/20250206_133038.jpg";
+import animatedBeachPhoto from "@assets/87462230-c1d9-44b3-900e-0f6812cb7eb4.png";
 
 // Real photos of Debraj and Ankita
 export const debrajAnkitaPhotos: GalleryImage[] = [
@@ -11,6 +16,26 @@ export const debrajAnkitaPhotos: GalleryImage[] = [
   {
     src: resortPhoto,
     alt: "Debraj and Ankita at a beach resort"
+  },
+  {
+    src: selfiePhoto,
+    alt: "Debraj and Ankita taking a selfie"
+  },
+  {
+    src: beachCarryPhoto,
+    alt: "Debraj carrying Ankita at the beach"
+  },
+  {
+    src: riverPhoto,
+    alt: "Debraj and Ankita by the river"
+  },
+  {
+    src: groupPhoto,
+    alt: "Debraj and Ankita with friends"
+  },
+  {
+    src: animatedBeachPhoto,
+    alt: "Artistic illustration of the couple at the beach"
   }
 ];
 
@@ -51,10 +76,12 @@ export const galleryImages: GalleryImage[] = [
 export const engagementImages = [
   beachPhoto,
   resortPhoto,
+  selfiePhoto,
+  groupPhoto,
+  beachCarryPhoto,
+  animatedBeachPhoto,
   "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1556035511-3168381ea4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+  "https://images.unsplash.com/photo-1556035511-3168381ea4d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
 ];
 
 // Elegant wedding decor images
@@ -69,9 +96,12 @@ export const decorImages = [
 export const coupleImages = [
   beachPhoto,
   resortPhoto,
+  selfiePhoto,
+  riverPhoto,
+  beachCarryPhoto,
+  animatedBeachPhoto,
   "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-  "https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+  "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
 ];
 
 // Floral arrangement images

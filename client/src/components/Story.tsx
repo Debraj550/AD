@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import beachPhoto from "@assets/20250207_181846.jpg";
+import riverPhoto from "@assets/20250207_144239.jpg";
 
 export default function Story() {
   return (
@@ -25,8 +25,8 @@ export default function Story() {
             className="md:w-1/2"
           >
             <img 
-              src={beachPhoto} 
-              alt="Debraj and Ankita at the beach sunset" 
+              src={riverPhoto} 
+              alt="Debraj and Ankita by the river" 
               className="rounded-lg shadow-lg w-full h-[400px] object-cover"
             />
           </motion.div>

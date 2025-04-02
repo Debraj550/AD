@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import beachPhoto from "@assets/20250207_181846.jpg";
 import resortPhoto from "@assets/20250208_145445.jpg";
+import selfiePhoto from "@assets/image_1743634855775.png";
+import beachCarryPhoto from "@assets/20250208_140307 (1).jpg";
+import riverPhoto from "@assets/20250207_144239.jpg";
+import animatedBeachPhoto from "@assets/87462230-c1d9-44b3-900e-0f6812cb7eb4.png";
 
 export default function Hero() {
   const scrollToStory = () => {
@@ -18,9 +22,11 @@ export default function Hero() {
   const backgroundImages = [
     beachPhoto,
     resortPhoto,
-    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    selfiePhoto,
+    beachCarryPhoto,
+    riverPhoto,
+    animatedBeachPhoto,
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   ];
   
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
