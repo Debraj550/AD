@@ -5,7 +5,9 @@ import resortPhoto from "@assets/20250208_145445.jpg";
 import selfiePhoto from "@assets/image_1743634855775.png";
 import beachCarryPhoto from "@assets/20250208_140307 (1).jpg";
 import riverPhoto from "@assets/20250207_144239.jpg";
-import animatedBeachPhoto from "@assets/87462230-c1d9-44b3-900e-0f6812cb7eb4.png";
+import groupPhoto from "@assets/20250206_133038.jpg";
+import homePhoto from "@assets/20241015_163356.jpg";
+import cafePhoto from "@assets/20241123_195845.jpg";
 
 export default function Hero() {
   const scrollToStory = () => {
@@ -18,15 +20,16 @@ export default function Hero() {
     }
   };
 
-  // Background images including our couple photos
+  // Background images including our couple photos - only real photos
   const backgroundImages = [
     beachPhoto,
     resortPhoto,
     selfiePhoto,
     beachCarryPhoto,
     riverPhoto,
-    animatedBeachPhoto,
-    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    groupPhoto,
+    homePhoto,
+    cafePhoto
   ];
   
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
