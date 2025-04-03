@@ -11,43 +11,34 @@ import cafePhoto from "@assets/20241123_195845.jpg";
 
 export default function Hero() {
   const scrollToStory = () => {
-    const storySection = document.getElementById('story');
+    const storySection = document.getElementById("story");
     if (storySection) {
       window.scrollTo({
         top: storySection.offsetTop - 80,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   // Background images including our couple photos - only real photos
-  const backgroundImages = [
-    beachPhoto,
-    resortPhoto,
-    selfiePhoto,
-    beachCarryPhoto,
-    riverPhoto,
-    groupPhoto,
-    homePhoto,
-    cafePhoto
-  ];
-  
+  const backgroundImages = [resortPhoto];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   // Animation for background image slideshow
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000); // Change image every 5 seconds
-    
+
     return () => clearInterval(interval);
   }, [backgroundImages.length]);
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="w-full min-h-screen flex items-center justify-center relative py-24 overflow-hidden"
     >
       {/* Animated Background Images */}
@@ -60,27 +51,26 @@ export default function Hero() {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 w-full h-full"
         >
-          <div 
-            className="absolute inset-0 bg-cover bg-center h-full w-full" 
+          <div
+            className="absolute inset-0 bg-cover bg-center h-[800px] w-full"
             style={{
               backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
-              filter: 'brightness(0.7)'
+              filter: "brightness(0.7)",
             }}
           />
         </motion.div>
       </AnimatePresence>
-      
-      {/* Overlay with animated particles for elegant effect */}
+
       <div className="absolute inset-0 bg-black/40"></div>
-      
+
       {/* Content */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="container mx-auto px-4 text-center relative z-10"
       >
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -88,7 +78,7 @@ export default function Hero() {
         >
           WE ARE GETTING ENGAGED
         </motion.p>
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
@@ -96,7 +86,7 @@ export default function Hero() {
         >
           Debraj & Ankita
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
@@ -104,7 +94,7 @@ export default function Hero() {
         >
           10 July, 2025
         </motion.p>
-        <motion.div 
+        <motion.div
           initial={{ width: 0 }}
           animate={{ width: "8rem" }}
           transition={{ delay: 0.8, duration: 0.6 }}

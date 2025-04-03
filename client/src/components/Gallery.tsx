@@ -19,55 +19,59 @@ export default function Gallery({ onImageClick }: GalleryProps) {
   const galleryImages: GalleryImage[] = [
     {
       src: beachPhoto,
-      alt: "Debraj and Ankita at the beach sunset"
+      alt: "Debraj and Ankita at the beach sunset",
     },
     {
       src: resortPhoto,
-      alt: "Debraj and Ankita at a beach resort"
+      alt: "Debraj and Ankita at a beach resort",
     },
     {
       src: selfiePhoto,
-      alt: "Debraj and Ankita taking a selfie"
+      alt: "Debraj and Ankita taking a selfie",
     },
     {
       src: beachCarryPhoto,
-      alt: "Debraj carrying Ankita at the beach"
+      alt: "Debraj carrying Ankita at the beach",
     },
     {
       src: riverPhoto,
-      alt: "Debraj and Ankita by the river"
+      alt: "Debraj and Ankita by the river",
     },
     {
       src: groupPhoto,
-      alt: "Debraj and Ankita with friends"
+      alt: "Debraj and Ankita with friends",
     },
     {
       src: homePhoto,
-      alt: "Debraj and Ankita at home"
+      alt: "Debraj and Ankita at home",
     },
     {
       src: cafePhoto,
-      alt: "Debraj and Ankita at a cafe"
-    }
+      alt: "Debraj and Ankita at a cafe",
+    },
   ];
 
   return (
     <section id="gallery" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-cormorant text-4xl md:text-5xl text-dark mb-3 gold-underline">Our Gallery</h2>
-          <p className="text-accent mt-10 max-w-2xl mx-auto">Moments we cherish</p>
+          <h2 className="font-cormorant text-4xl md:text-5xl text-dark mb-3 gold-underline">
+            Our Gallery
+          </h2>
+          <p className="text-accent mt-10 max-w-2xl mx-auto">
+            Some of the moments we cherish !!
+          </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {galleryImages.map((image, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -77,10 +81,10 @@ export default function Gallery({ onImageClick }: GalleryProps) {
               onClick={() => onImageClick(image)}
               whileHover={{ scale: 1.02 }}
             >
-              <img 
-                src={image.src} 
-                alt={image.alt} 
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500" 
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-500"
               />
             </motion.div>
           ))}

@@ -17,12 +17,12 @@ export default function Home() {
   const openModal = (image: GalleryImage) => {
     setSelectedImage(image);
     setModalOpen(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   };
 
   return (
@@ -34,13 +34,13 @@ export default function Home() {
         <Story />
         <EventDetails />
         <Gallery onImageClick={openModal} />
-        <Rsvp />
+        {/* <Rsvp /> */}
       </main>
       <Footer />
-      <GalleryModal 
-        isOpen={modalOpen} 
-        onClose={closeModal} 
-        image={selectedImage} 
+      <GalleryModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        image={selectedImage}
       />
     </div>
   );
