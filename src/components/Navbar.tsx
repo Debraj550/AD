@@ -28,7 +28,7 @@ export default function Navbar() {
     const section = document.getElementById(sectionId);
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 80,
+        top: section.offsetTop,
         behavior: "smooth",
       });
       setMobileMenuOpen(false);
