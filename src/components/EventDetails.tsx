@@ -6,24 +6,24 @@ import thumbsupcat from "@assets/thumbsupcat.jpg";
 export default function EventDetails() {
   const timeline: TimelineItem[] = [
     {
-      time: "11:30 AM",
+      time: "11:00 AM Onwards",
       title: "Guests Arrival",
-      description: "Welcome drinks and mingling",
+      description: "Welcome drinks and mingling 🍹",
     },
     {
-      time: "12:30 PM",
-      title: "Engagement Ceremony",
-      description: "Exchange of rings and vows",
+      time: "12:00 PM",
+      title: "Registry Ceremony & Ring Exchange",
+      description: "Official registration and exchanging of rings 💍",
     },
     {
-      time: "1:30 PM",
-      title: "Registry Ceremony",
-      description: "Official registration of engagement",
+      time: "12:45 PM",
+      title: "Celebrations",
+      description: "Let the fun begin with music, games, and joy 🎉",
     },
     {
-      time: "2:00 PM",
-      title: "Celebration Lunch",
-      description: "Festive meal with music and celebration",
+      time: "1:00 PM",
+      title: "Lunch",
+      description: "A festive meal filled with flavors and laughter 🍽️🎶",
     },
   ];
 

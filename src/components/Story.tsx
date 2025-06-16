@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import riverPhoto from "@assets/20250207_144239.jpg";
-
+import propose from "@assets/propose.png";
 export default function Story() {
   return (
     <section id="story" className="py-24 bg-white">
@@ -27,7 +27,7 @@ export default function Story() {
             className="md:w-1/2 flex justify-center"
           >
             <img
-              src={riverPhoto}
+              src={propose}
               alt="Debraj and Ankita by the river"
               className="rounded-lg shadow-lg w-full md:w-[450px] lg:w-[500px] h-auto object-cover"
             />
