@@ -183,7 +183,7 @@ export default function EventDetails() {
         </div>
       </div>
 
-      <FloatingElements />
+      {/* <FloatingElements /> */}
 
       <div className="container mx-auto px-6 lg:px-20 relative z-10">
         {/* Header Section */}
@@ -497,7 +497,7 @@ export default function EventDetails() {
                 <Clock className="w-4 h-4 text-indigo-400" />
               </motion.div>
               <span className="text-white font-bold tracking-widest text-xs uppercase bg-gradient-to-r from-indigo-300 to-rose-300 bg-clip-text text-transparent">
-                 Schedule
+                Schedule
               </span>
               <motion.div
                 animate={{ rotate: -360 }}

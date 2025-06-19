@@ -141,7 +141,7 @@ export default function Story() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-8"
+              className="space-y-8 md:block hidden"
             >
               <div className="relative">
                 <Quote className="absolute -top-4 -left-4 w-8 h-8 text-rose-300/50" />
@@ -156,12 +156,7 @@ export default function Story() {
                   know each other, and before we knew it, we had shared
                   countless laughs, a few silly fights, and endless adventures.
                 </p>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  From traveling to new places to indulging in amazing food,
-                  from meeting each other's families to finally getting down on
-                  one knee in Goa—it's been a whirlwind of emotions and
-                  beautiful moments.
-                </p>
+
                 <div className="flex items-center gap-4 pt-4 border-t border-rose-200/50">
                   <div className="flex items-center gap-2 text-rose-600">
                     <Heart className="w-5 h-5" fill="currentColor" />
@@ -173,73 +168,6 @@ export default function Story() {
           </div>
 
           {/* Journey Continues Section */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Text Section - Left side this time */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8 lg:order-1"
-            >
-              <div className="relative">
-                <h3 className="font-serif text-4xl md:text-5xl text-gray-800 mb-6 leading-tight">
-                  Forever <span className="text-purple-500">Begins</span>
-                </h3>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-50/80 to-rose-50/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  This past year flew by in a flash, but every second was filled
-                  with love, joy, and memories we'll cherish forever. And now,
-                  as we step into the next chapter—one that's both exciting and
-                  a little terrifying—we embrace the unknown together.
-                </p>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  The late-night talks about the future, the compromises, the
-                  growth, and the realization that love isn't just about the
-                  grand gestures but also about showing up for each other, every
-                  single day.
-                </p>
-                <div className="bg-white/50 rounded-xl p-4 border border-rose-200/30">
-                  <p className="text-rose-700 font-medium text-center italic">
-                    "Here's to forever, with all its uncertainties and all its
-                    magic!"
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Image Section - Right side */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative group lg:order-2"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-rose-400/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500" />
-              <div className="relative bg-white/80 backdrop-blur-sm p-4 rounded-3xl shadow-2xl border border-white/50">
-                <img
-                  src={riverPhoto || "/placeholder.svg"}
-                  alt="Debraj and Ankita by the river"
-                  className="w-full h-[500px] object-cover rounded-2xl shadow-lg group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                  <Heart
-                    className="w-6 h-6 text-purple-500"
-                    fill="currentColor"
-                  />
-                </div>
-                <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-lg">
-                  <div className="flex items-center gap-2 text-purple-600 font-medium">
-                    <Sparkles className="w-4 h-4" />
-                    <span className="text-sm">Our Journey</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </div>
 
         {/* Bottom Decorative Section */}

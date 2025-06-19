@@ -87,34 +87,7 @@ export default function Countdown() {
 
   // Floating particles animation
   const FloatingParticles = () => {
-    return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/30 rounded-full"
-            initial={{
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1200),
-              y: typeof window !== "undefined" ? window.innerHeight + 50 : 800,
-            }}
-            animate={{
-              y: -50,
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1200),
-            }}
-            transition={{
-              duration: 6 + Math.random() * 4,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 0.5,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
-    );
+    return null;
   };
 
   if (!mounted) {
@@ -150,7 +123,7 @@ export default function Countdown() {
       </div>
 
       {/* Floating Particles */}
-      <FloatingParticles />
+      {/* <FloatingParticles /> */}
 
       {/* Decorative Elements */}
       <div className="absolute top-10 left-10 opacity-30">
