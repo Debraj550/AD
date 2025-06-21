@@ -2,46 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Heart, MapPin, Calendar, Sparkles, Quote } from "lucide-react";
-import river from "@assets/20250207_144239.jpg";
 import propose from "@assets/propose.png";
 
 export default function Story() {
-  // Using placeholder for demo - replace with your actual images
-  const riverPhoto = river;
   const proposePhoto = propose;
-  const FloatingHearts = () => {
-    return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-rose-200/20"
-            initial={{
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1200),
-              y: typeof window !== "undefined" ? window.innerHeight + 50 : 800,
-              rotate: 0,
-              scale: 0.3,
-            }}
-            animate={{
-              y: -50,
-              rotate: 360,
-              scale: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 12 + Math.random() * 6,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 3,
-              ease: "linear",
-            }}
-          >
-            <Heart className="w-8 h-8" fill="currentColor" />
-          </motion.div>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <section
@@ -75,8 +39,6 @@ export default function Story() {
           </motion.div>
         </div>
       </div>
-
-      <FloatingHearts />
 
       <div className="container mx-auto px-6 lg:px-20 relative z-10">
         {/* Header Section */}

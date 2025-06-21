@@ -6,12 +6,6 @@ import { Heart, Sparkles } from "lucide-react";
 
 import beachPhoto from "@assets/20250207_181846.jpg";
 import resortPhoto from "@assets/20250208_145445.jpg";
-import selfiePhoto from "@assets/image_1743634855775.png";
-import beachCarryPhoto from "@assets/20250208_140307 (1).jpg";
-import riverPhoto from "@assets/20250207_144239.jpg";
-import groupPhoto from "@assets/20250206_133038.jpg";
-import homePhoto from "@assets/20241015_163356.jpg";
-import cafePhoto from "@assets/20241123_195845.jpg";
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,7 +29,10 @@ export default function Hero() {
     }
   };
 
-  const backgroundImages = [beachPhoto, resortPhoto];
+  const backgroundImages = [
+    "https://res.cloudinary.com/dw78kjit1/image/upload/v1750504966/Engagement/fladwr8t45t234j94wzt.jpg",
+    resortPhoto,
+  ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -106,20 +103,8 @@ export default function Hero() {
         </>
       )}
 
-      <motion.div
-        initial={{ opacity: 0, y: isMobile ? 30 : 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: isMobile ? 0.8 : 1.2, ease: "easeOut" }}
-        className="container mx-auto px-4 md:px-6 text-center relative z-10 max-w-4xl"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: isMobile ? "easeOut" : "backOut",
-          }}
+      <div className="container mx-auto px-4 md:px-6 text-center relative z-10 max-w-4xl">
+        <div
           className={`inline-flex items-center gap-2 ${
             isMobile
               ? "bg-white/20 border border-white/30"
@@ -137,7 +122,7 @@ export default function Hero() {
             className="w-3 h-3 md:w-4 md:h-4 text-rose-300"
             fill="currentColor"
           />
-        </motion.div>
+        </div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -158,12 +143,7 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-          className="relative mb-8 md:mb-12"
-        >
+        <div className="relative mb-8 md:mb-12">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent h-px top-1/2 transform -translate-y-1/2"></div>
           <div
             className={`relative ${
@@ -174,14 +154,9 @@ export default function Hero() {
               10 July, 2025
             </p>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="space-y-4 md:space-y-6 mb-8 md:mb-12"
-        >
+        <div className="space-y-4 md:space-y-6 mb-8 md:mb-12">
           <p className="text-white/90 font-light text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto px-4">
             After surviving hundreds of breakups, weekly debates over "why one
             should watch a k-drama?" After countless breakups, we choose chaos
@@ -191,13 +166,9 @@ export default function Hero() {
             Now, welcome to watch us turn our endless arguments from episodes
             into a lifetime web series.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.8 }}
-        >
+        <div>
           <motion.button
             onClick={scrollToStory}
             className="group relative inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-rose-500 to-purple-600 hover:from-rose-600 hover:to-purple-700 text-white font-medium py-3 md:py-4 px-6 md:px-10 rounded-full shadow-2xl transition-all duration-300 overflow-hidden"
@@ -223,8 +194,8 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-500"></div>
             )}
           </motion.button>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
