@@ -35,94 +35,46 @@ export default function Hero() {
     }
   };
 
-  // Using placeholder images for demo
   const backgroundImages = [beachPhoto, resortPhoto];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
-        );
-      },
-      isMobile ? 8000 : 6000
-    ); // Slower on mobile
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [backgroundImages.length, isMobile]);
-
-  // Reduced floating hearts for mobile
-  const FloatingHearts = () => {
-    return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-rose-300/20"
-            initial={{
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1200),
-              y: typeof window !== "undefined" ? window.innerHeight + 50 : 800,
-              rotate: 0,
-              scale: 0.3,
-            }}
-            animate={{
-              y: -50,
-              rotate: 360,
-              scale: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 12 + Math.random() * 4,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 3,
-              ease: "linear",
-            }}
-            style={{ willChange: "transform" }}
-          >
-            <Heart className="w-4 h-4" fill="currentColor" />
-          </motion.div>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <section
       id="hero"
       className="w-full min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      {/* Animated Background Images with Ken Burns Effect */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentImageIndex}
-          initial={{ opacity: 0, scale: isMobile ? 1 : 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: isMobile ? 1 : 0.95 }}
-          transition={{ duration: isMobile ? 1 : 2, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center w-full h-full"
-            style={{
-              backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <motion.div
+        key={currentImageIndex}
+        initial={{ opacity: 0, scale: isMobile ? 1 : 1.1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: isMobile ? 1 : 0.95 }}
+        transition={{ duration: isMobile ? 1 : 2, ease: "easeInOut" }}
+        className="absolute inset-0 w-full h-full"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center w-full h-full"
+          style={{
+            backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+          }}
+        />
+      </motion.div>
 
-      {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
       {!isMobile && (
         <div className="absolute inset-0 bg-gradient-to-r from-rose-900/20 via-transparent to-purple-900/20"></div>
       )}
 
-      {/* Floating Hearts - Desktop Only */}
-      <FloatingHearts />
-
-      {/* Decorative Elements - Desktop Only */}
       {!isMobile && (
         <>
           <div className="absolute top-20 left-10 opacity-20">
@@ -154,14 +106,12 @@ export default function Hero() {
         </>
       )}
 
-      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: isMobile ? 30 : 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: isMobile ? 0.8 : 1.2, ease: "easeOut" }}
         className="container mx-auto px-4 md:px-6 text-center relative z-10 max-w-4xl"
       >
-        {/* Announcement Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -189,7 +139,6 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Names */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -209,7 +158,6 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        {/* Date */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -228,7 +176,6 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Story Text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -246,7 +193,6 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -278,8 +224,6 @@ export default function Hero() {
             )}
           </motion.button>
         </motion.div>
-
-        {/* Scroll Indicator - Desktop Only */}
       </motion.div>
     </section>
   );

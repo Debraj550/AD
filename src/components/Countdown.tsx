@@ -117,15 +117,10 @@ export default function Countdown() {
           ))}
         </div>
 
-        {/* Multi-layered overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-rose-900/30 via-transparent to-purple-900/30" />
       </div>
 
-      {/* Floating Particles */}
-      {/* <FloatingParticles /> */}
-
-      {/* Decorative Elements */}
       <div className="absolute top-10 left-10 opacity-30">
         <motion.div
           animate={{ rotate: 360, scale: [1, 1.2, 1] }}
@@ -151,9 +146,7 @@ export default function Countdown() {
         </motion.div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-20 text-center text-white px-6 max-w-6xl mx-auto">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -179,31 +172,16 @@ export default function Countdown() {
           <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-purple-400 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Countdown Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12">
           {countdownData.map((item, index) => {
             const Icon = item.icon;
             return (
-              <motion.div
-                key={item.label}
-                initial={{ y: 50, opacity: 0, scale: 0.8 }}
-                animate={{ y: 0, opacity: 1, scale: 1 }}
-                transition={{
-                  delay: index * 0.15,
-                  duration: 0.8,
-                  type: "spring",
-                  stiffness: 100,
-                }}
-                className="group relative"
-              >
-                {/* Glow effect */}
+              <div key={item.label} className="group relative">
                 <div
                   className={`absolute inset-0 bg-gradient-to-r ${item.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
                 />
 
-                {/* Main card */}
                 <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20 hover:border-white/40 transition-all duration-500 group-hover:transform group-hover:scale-105">
-                  {/* Icon */}
                   <div className="mb-4">
                     <div
                       className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r ${item.color} shadow-lg`}
@@ -212,44 +190,29 @@ export default function Countdown() {
                     </div>
                   </div>
 
-                  {/* Number with animation */}
                   <div className="mb-2">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={item.value}
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
-                      >
-                        {padWithZero(item.value)}
-                      </motion.div>
-                    </AnimatePresence>
+                    <motion.div
+                      key={item.value}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -20, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}
+                    >
+                      {padWithZero(item.value)}
+                    </motion.div>
                   </div>
 
-                  {/* Label */}
                   <div className="text-gray-600 font-medium text-sm md:text-base uppercase tracking-wider">
                     {item.label}
                   </div>
-
-                  {/* Decorative line */}
-                  <div
-                    className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 h-1 bg-gradient-to-r ${item.color} rounded-full transition-all duration-500`}
-                  />
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
-        {/* Bottom Message */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 max-w-2xl mx-auto">
             <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed mb-4">
               Every second brings us closer to forever
@@ -262,10 +225,9 @@ export default function Countdown() {
               <Heart className="w-5 h-5" fill="currentColor" />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Bottom decorative wave */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/50 to-transparent" />
     </section>
   );

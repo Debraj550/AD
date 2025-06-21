@@ -212,7 +212,7 @@ export default function EventDetails() {
               <Crown className="w-4 h-4 text-yellow-400" />
             </motion.div>
             <span className="text-white font-bold tracking-widest text-xs uppercase bg-gradient-to-r from-rose-300 to-purple-300 bg-clip-text text-transparent">
-              Royal Celebration
+              Celebration
             </span>
             <motion.div
               animate={{ rotate: -360 }}
@@ -237,7 +237,7 @@ export default function EventDetails() {
             </span>
           </motion.h2>
 
-          <motion.div
+          <div
             className="w-32 h-1 bg-gradient-to-r from-rose-400 via-purple-400 via-pink-400 to-yellow-400 mx-auto rounded-full mb-8 shadow-lg shadow-purple-500/50"
             initial={{ width: 0 }}
             whileInView={{ width: 128 }}
@@ -261,9 +261,7 @@ export default function EventDetails() {
           </motion.p>
         </motion.div>
 
-        {/* Main Event Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-stretch">
-          {/* Event Details Card */}
           <motion.div
             initial={{ opacity: 0, y: 50, rotateY: -15 }}
             whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
@@ -305,8 +303,7 @@ export default function EventDetails() {
                   </div>
                 </motion.div>
 
-                {/* Decorative Divider */}
-                <motion.div
+                <div
                   className="flex items-center justify-center gap-4"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -323,7 +320,7 @@ export default function EventDetails() {
                     <Diamond className="w-6 h-6 text-yellow-400" />
                   </motion.div>
                   <div className="w-16 h-px bg-gradient-to-r from-purple-400 via-rose-400 to-transparent" />
-                </motion.div>
+                </div>
 
                 {/* Where Section */}
                 <motion.div

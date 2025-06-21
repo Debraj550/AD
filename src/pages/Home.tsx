@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Play,
@@ -12,20 +12,33 @@ import {
   Music,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Countdown from "@/components/Countdown";
-import Story from "@/components/Story";
-import EventDetails from "@/components/EventDetails";
-import Gallery from "@/components/Gallery";
-import Footer from "@/components/Footer";
-import GalleryModal from "@/components/GalleryModal";
-import song from "@assets/song.mp3";
+
+import SectionSkeleton from "@/components/SectionSkeleton";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
+// Lazy load heavy components
+const Hero = lazy(() => import("@/components/Hero"));
+const Countdown = lazy(() => import("@/components/Countdown"));
+const Story = lazy(() => import("@/components/Story"));
+const EventDetails = lazy(() => import("@/components/EventDetails"));
+const Gallery = lazy(() => import("@/components/Gallery"));
+const Footer = lazy(() => import("@/components/Footer"));
+const GalleryModal = lazy(() => import("@/components/GalleryModal"));
 
 type GalleryImage = {
   id: number;
   src: string;
   alt: string;
   category?: string;
+};
+
+type LoadingState = {
+  hero: boolean;
+  countdown: boolean;
+  story: boolean;
+  eventDetails: boolean;
+  gallery: boolean;
+  footer: boolean;
 };
 
 export default function Home() {
@@ -36,6 +49,17 @@ export default function Home() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [showPlayOverlay, setShowPlayOverlay] = useState(false);
   const [volume, setVolume] = useState(0.5);
+  const [sectionsLoaded, setSectionsLoaded] = useState<LoadingState>({
+    hero: false,
+    countdown: false,
+    story: false,
+    eventDetails: false,
+    gallery: false,
+    footer: false,
+  });
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(
+    new Set()
+  );
 
   useEffect(() => {
     const checkMobile = () => {
@@ -47,13 +71,54 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Initialize audio with placeholder
-    const audioObj = new Audio(song); // Replace with your song
+    // Preload critical sections first
+    const loadSectionsSequentially = async () => {
+      // Load hero first (most important)
+      setTimeout(() => {
+        setSectionsLoaded((prev) => ({ ...prev, hero: true }));
+        setVisibleSections((prev) => new Set([...prev, "hero"]));
+      }, 100);
+
+      // Load countdown after hero
+      setTimeout(() => {
+        setSectionsLoaded((prev) => ({ ...prev, countdown: true }));
+        setVisibleSections((prev) => new Set([...prev, "countdown"]));
+      }, 300);
+
+      // Load story section
+      setTimeout(() => {
+        setSectionsLoaded((prev) => ({ ...prev, story: true }));
+        setVisibleSections((prev) => new Set([...prev, "story"]));
+      }, 600);
+
+      // Load event details
+      setTimeout(() => {
+        setSectionsLoaded((prev) => ({ ...prev, eventDetails: true }));
+        setVisibleSections((prev) => new Set([...prev, "eventDetails"]));
+      }, 900);
+
+      // Load gallery (potentially heavy)
+      setTimeout(() => {
+        setSectionsLoaded((prev) => ({ ...prev, gallery: true }));
+        setVisibleSections((prev) => new Set([...prev, "gallery"]));
+      }, 1200);
+
+      // Load footer last
+      setTimeout(() => {
+        setSectionsLoaded((prev) => ({ ...prev, footer: true }));
+        setVisibleSections((prev) => new Set([...prev, "footer"]));
+      }, 1500);
+    };
+
+    loadSectionsSequentially();
+  }, []);
+
+  useEffect(() => {
+    const audioObj = new Audio("/assets/song.mp3");
     audioObj.loop = true;
     audioObj.volume = volume;
     setAudio(audioObj);
 
-    // Try to play automatically
     const playPromise = audioObj.play();
 
     playPromise
@@ -65,7 +130,6 @@ export default function Home() {
         setShowPlayOverlay(true);
       });
 
-    // Cleanup
     return () => {
       audioObj.pause();
     };
@@ -113,47 +177,8 @@ export default function Home() {
     document.body.style.overflow = "auto";
   };
 
-  // Floating music notes animation
-  const FloatingNotes = () => {
-    if (!isPlaying || isMobile) return null;
-
-    return (
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-30">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-purple-300/20"
-            initial={{
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1200),
-              y: typeof window !== "undefined" ? window.innerHeight + 50 : 800,
-              rotate: 0,
-              scale: 0.3,
-            }}
-            animate={{
-              y: -50,
-              rotate: 360,
-              scale: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: i * 2,
-              ease: "linear",
-            }}
-            style={{ willChange: "transform" }}
-          >
-            <Music className="w-4 h-4" />
-          </motion.div>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Enhanced Play Overlay */}
       <AnimatePresence>
         {showPlayOverlay && (
           <motion.div
@@ -162,51 +187,6 @@ export default function Home() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-rose-900 z-50 flex flex-col items-center justify-center p-4"
           >
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(20)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute"
-                  initial={{
-                    x:
-                      Math.random() *
-                      (typeof window !== "undefined"
-                        ? window.innerWidth
-                        : 1200),
-                    y:
-                      Math.random() *
-                      (typeof window !== "undefined"
-                        ? window.innerHeight
-                        : 800),
-                    scale: 0,
-                    rotate: 0,
-                  }}
-                  animate={{
-                    scale: [0, 1, 0],
-                    rotate: 360,
-                    opacity: [0, 0.3, 0],
-                  }}
-                  transition={{
-                    duration: 4 + Math.random() * 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    delay: i * 0.2,
-                  }}
-                >
-                  {i % 3 === 0 && (
-                    <Heart
-                      className="w-4 h-4 text-rose-300"
-                      fill="currentColor"
-                    />
-                  )}
-                  {i % 3 === 1 && (
-                    <Sparkles className="w-3 h-3 text-yellow-300" />
-                  )}
-                  {i % 3 === 2 && <Music className="w-3 h-3 text-purple-300" />}
-                </motion.div>
-              ))}
-            </div>
-
             <motion.div
               initial={{ scale: 0.8, y: 30 }}
               animate={{ scale: 1, y: 0 }}
@@ -283,18 +263,87 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Floating Music Notes */}
-      {/* <FloatingNotes /> */}
-
       <Navbar />
       <main>
-        <Hero />
-        <Countdown />
-        <Story />
-        <EventDetails />
-        <Gallery onImageClick={openModal} />
+        {/* Hero Section */}
+        <Suspense fallback={<SectionSkeleton type="hero" />}>
+          {sectionsLoaded.hero && visibleSections.has("hero") && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Hero />
+            </motion.div>
+          )}
+        </Suspense>
+
+        {/* Countdown Section */}
+        <Suspense fallback={<SectionSkeleton type="countdown" />}>
+          {sectionsLoaded.countdown && visibleSections.has("countdown") && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Countdown />
+            </motion.div>
+          )}
+        </Suspense>
+
+        {/* Story Section */}
+        <Suspense fallback={<SectionSkeleton type="story" />}>
+          {sectionsLoaded.story && visibleSections.has("story") && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Story />
+            </motion.div>
+          )}
+        </Suspense>
+
+        {/* Event Details Section */}
+        <Suspense fallback={<SectionSkeleton type="eventDetails" />}>
+          {sectionsLoaded.eventDetails &&
+            visibleSections.has("eventDetails") && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <EventDetails />
+              </motion.div>
+            )}
+        </Suspense>
+
+        {/* Gallery Section */}
+        <Suspense fallback={<SectionSkeleton type="gallery" />}>
+          {sectionsLoaded.gallery && visibleSections.has("gallery") && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Gallery onImageClick={openModal} />
+            </motion.div>
+          )}
+        </Suspense>
       </main>
-      <Footer />
+
+      {/* Footer */}
+      <Suspense fallback={<SectionSkeleton type="footer" />}>
+        {sectionsLoaded.footer && visibleSections.has("footer") && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <Footer />
+          </motion.div>
+        )}
+      </Suspense>
 
       {/* Enhanced Music Control Button */}
       <motion.div
@@ -314,7 +363,6 @@ export default function Home() {
           whileTap={{ scale: 0.95 }}
           style={{ willChange: "transform" }}
         >
-          {/* Animated background */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-rose-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             animate={isPlaying ? { rotate: 360 } : {}}
@@ -325,7 +373,6 @@ export default function Home() {
             }}
           />
 
-          {/* Icon with animation */}
           <motion.div
             className="relative z-10 flex items-center gap-2"
             animate={isPlaying ? { scale: [1, 1.1, 1] } : {}}
@@ -343,7 +390,6 @@ export default function Home() {
             )}
           </motion.div>
 
-          {/* Pulse effect when playing */}
           {isPlaying && (
             <motion.div
               className="absolute inset-0 rounded-full bg-white/20"
@@ -352,60 +398,18 @@ export default function Home() {
             />
           )}
         </motion.button>
-
-        {/* Volume Control - Desktop Only */}
-        {!isMobile && (
-          <motion.div
-            className="absolute bottom-full right-0 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            initial={{ y: 10 }}
-            whileHover={{ y: 0 }}
-          >
-            <div className="bg-black/80 backdrop-blur-xl rounded-lg p-3 border border-white/20 shadow-xl">
-              <div className="flex items-center gap-2 mb-2">
-                <Volume2 className="w-4 h-4 text-white" />
-                <span className="text-white text-xs font-medium">Volume</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value={volume}
-                onChange={(e) => setVolume(Number.parseFloat(e.target.value))}
-                className="w-20 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
-              />
-            </div>
-          </motion.div>
-        )}
       </motion.div>
 
-      <GalleryModal
-        isOpen={modalOpen}
-        onClose={closeModal}
-        image={selectedImage}
-      />
-
-      {/* Custom CSS for volume slider */}
-      <style>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: linear-gradient(45deg, #ec4899, #8b5cf6);
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .slider::-moz-range-thumb {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: linear-gradient(45deg, #ec4899, #8b5cf6);
-          cursor: pointer;
-          border: none;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-      `}</style>
+      {/* Gallery Modal */}
+      <Suspense fallback={<LoadingSpinner />}>
+        {modalOpen && (
+          <GalleryModal
+            isOpen={modalOpen}
+            onClose={closeModal}
+            image={selectedImage}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }
